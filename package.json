@@ -1,0 +1,19 @@
+{
+  "name": "iso-canvas",
+  "version": "0.0.0",
+  "description": "A tile-based isometric engine",
+  "main": "index.js",
+  "dependencies": {
+    "grunt-typescript": "~0.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bernos/iso-canvas.git"
+  },
+  "author": "Brendan McMahon",
+  "license": "BSD"
+}
