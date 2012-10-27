@@ -14,5 +14,6 @@ module.exports = function(grunt) {
   // load npm tasks
   grunt.loadNpmTasks('grunt-typescript');
 
+  // register default task
   grunt.registerTask('default', 'typescript');
 };
