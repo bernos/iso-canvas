@@ -1,4 +1,6 @@
 module.exports = function(grunt) {
+
+  // configure grunt
   grunt.initConfig({
     typescript: {
       base: {
