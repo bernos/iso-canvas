@@ -47,7 +47,7 @@ define(["require", "exports", "./engine/geometry", "./engine/tiles", "./engine/p
     wallset.load(function () {
         mapLayer.load(function () {
             plotter.loadMouseMap("img/mousemap.png", function () {
-                loop();
+                requestAnimFrame(loop);
             });
         });
     });
@@ -60,9 +60,11 @@ define(["require", "exports", "./engine/geometry", "./engine/tiles", "./engine/p
         frameTime = t;
         getInput();
         draw();
+        requestAnimFrame(loop);
     }
     var highlightDirection = 0;
     document.onkeyup = function (e) {
+
         e = window.event || e;
         switch(e.keyCode) {
             case Key.LEFT: {
@@ -86,6 +88,8 @@ define(["require", "exports", "./engine/geometry", "./engine/tiles", "./engine/p
 
             }
         }
+
+
     };
     document.onkeydown = function (e) {
         e = window.event || e;
@@ -119,6 +123,7 @@ define(["require", "exports", "./engine/geometry", "./engine/tiles", "./engine/p
     function getInput() {
         ptAnchor.x += (((highlightDirection & d.EAST) >> 2) * SCROLL_AMOUNT) - (((highlightDirection & d.WEST) >> 3) * SCROLL_AMOUNT);
         ptAnchor.y -= ((highlightDirection & d.NORTH) * SCROLL_AMOUNT) - (((highlightDirection & d.SOUTH) >> 1) * SCROLL_AMOUNT);
+        
     }
     var selectedTile = new g.Point(0, 0);
     document.getElementById("canvas").onclick = function (e) {
@@ -184,7 +189,6 @@ define(["require", "exports", "./engine/geometry", "./engine/tiles", "./engine/p
                 ptWorld.y -= ptAnchor.y;
                 renderer.renderTile(mapLayer.getTileAt(ptMap.x, ptMap.y), ptWorld, ptMap.x + "," + ptMap.y);
                 if(ptMap.x == 2 && ptMap.y == 2) {
-                    console.log("wall");
                     ptWorld.y -= 32;
                     renderer.renderTile(wallset.tiles[0], ptWorld, "");
                 }
